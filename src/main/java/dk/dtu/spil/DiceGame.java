@@ -1,12 +1,12 @@
 package dk.dtu.spil;
-import java.util.Scanner;
 
-import dk.dtu.spil.DiceManager.DiceCup;
+import java.util.Scanner;
 import java.util.Arrays;
+import dk.dtu.spil.DiceManager.DiceCup;
 import dk.dtu.spil.PlayerManager.Player;
 
 //***************************************************************//
-// Main class for the dicethrow game program
+// Main class for the DiceGame program
 //***************************************************************//
 public class DiceGame {
     private final static DiceManager dm = new DiceManager();
@@ -18,7 +18,7 @@ public class DiceGame {
     public static void main(String[] args) {
 
         //***************************************************************//
-        //Sets the new players, and inputs their names.
+        // Sets the new players, and inputs their names.
         //***************************************************************//
         Scanner input = new Scanner(System.in);
 
@@ -29,17 +29,17 @@ public class DiceGame {
 
         System.out.println();
 
-        Player player1 = pm.new Player(User1);
-        Player player2 = pm.new Player(User2);
+        Player player1 = pm.createPlayer(User1);
+        Player player2 = pm.createPlayer(User2);
 
-        DiceCup diceCup = dm.new DiceCup();
+        DiceCup diceCup = dm.createDiceCup();
 
         //***************************************************************//
         // Loops the raffling as long as none of the players
         // have reached 40 points, it also reads out the result of each raffle
         //***************************************************************//
 
-        while (player1.getPoints() <= 39 && player2.getPoints() <= 39){
+        while (player1.getPoints() <= 39 && player2.getPoints() <= 39) {
             diceCup.raffleCup();
             player1.addPoints(diceCup.getSum());
 
@@ -56,15 +56,17 @@ public class DiceGame {
         // Writes which player won or if it was a tie between the two
         //***************************************************************//
 
-        if (player1.getPoints() >= 40 && player2.getPoints() < 40){
-            System.out.println("Player " + User1 + " has won the game ");
+        if (player1.getPoints() >= 40 && player2.getPoints() < 40) {
+            System.out.println(User1 + " has won the game ");
         }
-        else if (player2.getPoints() >= 40 && player1.getPoints() < 40 ){
-            System.out.println("Player " + User2 + " has won the game " );
+        else if (player2.getPoints() >= 40 && player1.getPoints() < 40 ) {
+            System.out.println(User2 + " has won the game " );
         }
-        else if (player1.getPoints() >= 40 && player2.getPoints() >= 40){
+        else if (player1.getPoints() >= 40 && player2.getPoints() >= 40) {
             System.out.println("The game was a tie between " + User1 + " and " + User2);
         }
-        else{System.out.println("An Error has occurred");}
+        else {
+            System.out.println("An error has occurred!");
+        }
     }
 }

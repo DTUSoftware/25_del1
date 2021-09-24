@@ -2,19 +2,20 @@ package dk.dtu.spil;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import dk.dtu.spil.DiceManager.DiceCup;
 
 public class TestDiceManager {
     private final static DiceManager dm = new DiceManager();
 
     @Test
     public void testDiceCupAndDieCreation() {
-        DiceManager.DiceCup testCup = dm.new DiceCup();
+        DiceCup testCup = dm.createDiceCup();
         assertArrayEquals(new int[] {6, 6}, testCup.getDiceValues());
     }
 
     @Test
     public void testDiceCupRaffle() {
-        DiceManager.DiceCup testCup = dm.new DiceCup();
+        DiceCup testCup = dm.createDiceCup();
         // We test the dice cup for 1000 throws
         for (int i = 0; i < 1000; i++) {
             // System.out.println("Testing raffle #" + i+1);

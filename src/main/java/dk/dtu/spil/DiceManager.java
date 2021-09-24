@@ -2,12 +2,11 @@ package dk.dtu.spil;
 
 import java.util.Random;
 
+// TODO: Write comments for the DiceManager
 public class DiceManager {
     private final int minDieValue = 1; // Sets the minimum value of the die.
     private final int maxDieValue = 6; // Sets the maximum value of the die.
     private final Random rand = new Random();
-
-    public DiceManager() {};
 
     private class Die {
         private int value = 6;
@@ -23,7 +22,8 @@ public class DiceManager {
         }
     }
 
-    public class DiceCup {
+    // Package-private class
+    class DiceCup {
         private Die die1;
         private Die die2;
 
@@ -48,5 +48,9 @@ public class DiceManager {
         public boolean isSimilar() {
             return (die1.getValue() == die2.getValue());
         }
+    }
+
+    public DiceCup createDiceCup() {
+        return new DiceCup();
     }
 }

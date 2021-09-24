@@ -9,7 +9,8 @@ public class PlayerManager {
     private final int playerStartpoints = 0;
     private ArrayList<Player> players = new ArrayList<>();
 
-    public class Player {
+    // Package-private class
+    class Player {
         //***************************************************************//
         // private integer that make sure the startpoints is 0, and
         //initializes the points
