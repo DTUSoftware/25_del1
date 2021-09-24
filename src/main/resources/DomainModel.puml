@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class DiceGame {
+}
+
+class Die {
+    faceValue
+}
+
+class Player {
+    name
+    points
+}
+
+DiceGame "1" -d- "2" Player : Includes
+DiceGame "1" -r- "2" Die : Includes
+
+@enduml
