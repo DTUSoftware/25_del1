@@ -1,22 +1,23 @@
 package dk.dtu.spil;
 
 import dk.dtu.spil.DiceManager.DiceCup;
-
 import java.util.Arrays;
 
 // Main class for the dicethrow game program
 public class Spil {
     private final static DiceManager dm = new DiceManager();
+    private final static PlayerManager pm = new PlayerManager();
 
     // Main function for the game
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         DiceCup diceCup = dm.new DiceCup();
 
         for (int i = 0; i < 100; i++) {
             diceCup.raffleCup();
 
-            System.out.println("DEBUG: " + Arrays.toString(diceCup.getDiceValues()) + " ("+ diceCup.getSum() + ") - isSimilar=" + diceCup.isSimilar());
+            pm.player1Points += diceCup.getSum();
+
+            System.out.println("DEBUG Nr. " + (i + 1) + ": " + Arrays.toString(diceCup.getDiceValues()) + " (" + diceCup.getSum() + ") - PlayerPoint = " + pm.player1Points + " - isSimilar=" + diceCup.isSimilar());
         }
 
 
