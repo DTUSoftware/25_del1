@@ -7,13 +7,7 @@ public class TestDiceManager {
     private final static DiceManager dm = new DiceManager();
 
     @Test
-    public void testDieCreation() {
-        DiceManager.Die testDie = dm.new Die();
-        assertEquals(6, testDie.getValue());
-    }
-
-    @Test
-    public void testDiceCupCreation() {
+    public void testDiceCupAndDieCreation() {
         DiceManager.DiceCup testCup = dm.new DiceCup();
         assertArrayEquals(new int[] {6, 6}, testCup.getDiceValues());
     }
