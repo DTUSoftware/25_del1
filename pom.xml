@@ -9,6 +9,7 @@
     <version>1.0.1</version>
     <name>CDIO Del 1</name>
     <description>Part 1 of CDIO project - Dice throwing game</description>
+    <url>https://github.com/DTUSoftware/25_del1</url>
 
     <licenses>
         <license>
@@ -18,6 +19,16 @@
     </licenses>
 
     <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- junit 5, unit test -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <jdk.version>15</jdk.version>
@@ -45,13 +56,18 @@
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
-                                        <Main-Class>dk.dtu.spil.Spil</Main-Class>
+                                        <Main-Class>${project.groupId}.${project.artifactId}.DiceGame</Main-Class>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
             </plugin>
         </plugins>
     </build>
