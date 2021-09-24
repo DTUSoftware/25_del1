@@ -6,7 +6,7 @@
 
     <groupId>dk.dtu</groupId>
     <artifactId>spil</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <name>CDIO Del 1</name>
     <description>Part 1 of CDIO project - Dice throwing game</description>
 
