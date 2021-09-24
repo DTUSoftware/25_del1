@@ -5,7 +5,7 @@ import java.util.Random;
 public class DiceManager {
     private final int minDieValue = 1; // Sets the minimum value of the die.
     private final int maxDieValue = 6; // Sets the maximum value of the die.
-    // private Random rand = new Random();
+    private Random rand = new Random();
 
     public DiceManager() {};
 
@@ -13,8 +13,9 @@ public class DiceManager {
         private int value = 6;
 
         public void raffle() {
-            value = (int) ((Math.random() * (maxDieValue-minDieValue+1)) + minDieValue);
-            // value = rand.nextInt(maxDieValue-minDieValue) + minDieValue;
+            // Random.nextInt() is faster and more efficient than Math.random() (see https://stackoverflow.com/a/738651/12418245)
+            // value = (int) ((Math.random() * (maxDieValue-minDieValue+1)) + minDieValue);
+            value = rand.nextInt(maxDieValue) + minDieValue;
         }
 
         public int getValue() {
