@@ -2,6 +2,7 @@ package dk.dtu.spil;
 
 import dk.dtu.spil.DiceManager.DiceCup;
 import java.util.Arrays;
+import dk.dtu.spil.PlayerManager.Player;
 
 // Main class for the dicethrow game program
 public class Spil {
@@ -10,16 +11,34 @@ public class Spil {
 
     // Main function for the game
     public static void main(String[] args) {
+        //Sets the new players. The names are placeholders
+        Player player1 = pm.new Player("John John");
+        Player player2 = pm.new Player("Janet Jackson");
+
         DiceCup diceCup = dm.new DiceCup();
 
+        while (player1.getPoints() <= 39 && player2.getPoints() <= 39){
+            diceCup.raffleCup();
+            player1.addPoints(diceCup.getSum());
+
+            System.out.println(player1.getName() + " har " + player1.getPoints());
+
+            diceCup.raffleCup();
+            player2.addPoints(diceCup.getSum());
+
+
+            System.out.println(player2.getName() + " har " + player2.getPoints());
+
+        }
+/*
         for (int i = 0; i < 100; i++) {
             diceCup.raffleCup();
 
-            pm.player1Points += diceCup.getSum();
+            pm.player.addPoints += diceCup.getSum();
 
             System.out.println("DEBUG Nr. " + (i + 1) + ": " + Arrays.toString(diceCup.getDiceValues()) + " (" + diceCup.getSum() + ") - PlayerPoint = " + pm.player1Points + " - isSimilar=" + diceCup.isSimilar());
         }
-
+*/
 
 //        boolean win = false;
 //        int[] player1Terning = new int[2];
