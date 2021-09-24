@@ -9,6 +9,7 @@
     <version>1.0.0</version>
     <name>CDIO Del 1</name>
     <description>Part 1 of CDIO project - Dice throwing game</description>
+    <url>https://github.com/DTUSoftware/25_del1</url>
 
     <licenses>
         <license>
@@ -30,9 +31,9 @@
     </dependencies>
 
     <properties>
-        <jdk.version>8</jdk.version>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <jdk.version>15</jdk.version>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
