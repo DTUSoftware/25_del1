@@ -55,7 +55,7 @@
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
-                                        <Main-Class>${project.groupId}.${project.artifactId}.Spil</Main-Class>
+                                        <Main-Class>${project.groupId}.${project.artifactId}.DiceGame</Main-Class>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
