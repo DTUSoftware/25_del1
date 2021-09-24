@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class DiceGame {
+    player1 : Player
+    player2 : Player
+    diceCup : DiceCup
+
+    main()
+}
+
+class Die {
+    faceValue : int
+
+    raffle()
+    getValue() : int
+}
+
+class DiceCup {
+    die1 : Die
+    die2 : Die
+
+    raffleCup()
+    getDiceValues() : int[]
+    getSum() : int
+    isSimilar() : boolean
+}
+
+class Player {
+    name : String
+    points : int
+
+    addPoints()
+    setPoints()
+    getPoints() : int
+    getName() : String
+}
+
+DiceGame --> "2" Player
+DiceGame --> "1" DiceCup
+DiceCup --> "2" Die
+
+@enduml
