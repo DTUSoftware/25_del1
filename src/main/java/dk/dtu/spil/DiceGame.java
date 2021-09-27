@@ -41,40 +41,35 @@ public class DiceGame {
 
     private static void play() {
         //***************************************************************//
-        // Loops the raffling as long as none of the players
-        // have reached 40 points, it also reads out the result of each raffle
+        // Loops the raffling as long as none of the has reached 40 points
+        // and the opposite player hasnt reached 40
         //***************************************************************//
         while (player1.getPoints() <= 39 && player2.getPoints() <= 39) {
-            playerPlay(player1);
-            playerPlay(player2);
+            if (player2.getPoints() <= 39) {
+                playerPlay(player1);
+            }
+            if (player1.getPoints() <= 39) {
+                playerPlay(player2);
+            }
         }
 
         //***************************************************************//
-        // Writes which player won or if it was a tie between the two
+        // Writes which player won, by checking if one of the players are
+        // over 40 points, if so, it writes which player it was
         //***************************************************************//
         String message;
-        if (player1.getPoints() >= 40 && player2.getPoints() < 40) {
-            message = player1.getName() + " has won the game!";
-            System.out.println(message);
-            gm.showMessage(message);
-        }
-        else if (player2.getPoints() >= 40 && player1.getPoints() < 40 ) {
-            message = player2.getName() + " has won the game!";
-            System.out.println(message);
-            gm.showMessage(message);
-        }
-        else if (player1.getPoints() >= 40 && player2.getPoints() >= 40) {
-            message = "The game was a tie between " + player1.getName() + " and " + player2.getName() + "!";
-            System.out.println(message);
-            gm.showMessage(message);
-        }
-        else {
-            message = "An error has occurred!";
-            System.out.println(message);
-            gm.showMessage(message);
+        if (player1.getPoints() >= 40 || player2.getPoints() >= 40) {
 
-            isPlaying = false;
-            return;
+            if (player1.getPoints() >= 40) {
+                message = player1.getName() + " has won the game!";
+                System.out.println(message);
+                gm.showMessage(message);
+            }
+            if (player2.getPoints() >= 40) {
+                message = player2.getName() + " has won the game!";
+                System.out.println(message);
+                gm.showMessage(message);
+            }
         }
 
         if (gm.askPrompt("Vil I spille igen?")) {
