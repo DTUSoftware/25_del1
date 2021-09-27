@@ -58,9 +58,9 @@ public class TestDiceManager {
             allDiceValues.put(diceValues[1], allDiceValues.get(diceValues[1])+1);
         }
 
-        System.out.println("All rolled dice counts: " + allDiceValues);
+//        System.out.println("All rolled dice counts: " + allDiceValues);
         double ratio = (((double) equalThrows)/((double) throwAmount));
-        System.out.println("Equal throws: " + equalThrows + " - " + ratio);
+//        System.out.println("Equal throws: " + equalThrows + " - " + ratio);
 
         // 6/36 = 1/6 = 0.1666
         assertTrue((ratio > (0.1666-0.005)) && (ratio < (0.1666+0.005)));
