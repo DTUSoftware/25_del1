@@ -98,6 +98,12 @@ public class DiceGame {
         player.addPoints(diceCup.getSum());
 
         System.out.println(player.getName() + " Got:" + Arrays.toString(new int[]{diceValues[0]}) + " and " + Arrays.toString(new int[]{diceValues[1]}) + " - Total: " + player.getPoints());
+        //***************************************************************//
+        // Sets the player points to 0 when both dice hit 1
+        //***************************************************************//
+        if (diceValues[0]==1 && diceValues[1]==1){
+            player.setPoints(0);
+        }
 
     }
 }
