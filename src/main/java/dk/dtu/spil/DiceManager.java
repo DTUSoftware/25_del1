@@ -9,16 +9,16 @@ public class DiceManager {
     private final Random rand = new Random();
 
     private class Die {
-        private int value = 6;
+        private int faceValue = 6;
 
         public void raffle() {
             // Random.nextInt() is faster and more efficient than Math.random() (see https://stackoverflow.com/a/738651/12418245)
             // value = (int) ((Math.random() * (maxDieValue-minDieValue+1)) + minDieValue);
-            value = rand.nextInt(maxDieValue) + minDieValue;
+            faceValue = rand.nextInt(maxDieValue) + minDieValue;
         }
 
         public int getValue() {
-            return value;
+            return faceValue;
         }
     }
 
