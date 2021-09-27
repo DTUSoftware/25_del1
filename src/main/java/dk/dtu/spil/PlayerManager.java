@@ -1,35 +1,39 @@
 package dk.dtu.spil;
 
-import java.util.ArrayList;
+import gui_fields.GUI_Player;
+import java.util.HashMap;
 
 //***************************************************************//
 // Class that can set points to a player
 //***************************************************************//
 public class PlayerManager {
     private final int playerStartpoints = 0;
-    private ArrayList<Player> players = new ArrayList<>();
+    private HashMap<Integer, Player> players = new HashMap<>();
 
     // Package-private class
     class Player {
         //***************************************************************//
-        // private integer that make sure the startpoints is 0, and
-        //initializes the points
+        // private integer that make sure the startpoints is correct,
+        // and initializes the points
         //***************************************************************//
         private int points = playerStartpoints;
-        private String name;
+        private final GUI_Player guiPlayer;
+        private final String name;
 
         //***************************************************************//
-        //Constructer: Sets the name of the player
+        // Constructor: Sets the name of the player
         //***************************************************************//
-        public Player(String _name) {
-            name = _name;
+        public Player(GUIManager gm) {
+            guiPlayer = gm.createGUIPlayer(points);
+            name = guiPlayer.getName();
         }
 
         //***************************************************************//
-        // Adds points to the player
+        // Add points to the player
         //***************************************************************//
         public void addPoints(int p) {
             points += p;
+            guiPlayer.setBalance(points);
         }
 
         //***************************************************************//
@@ -37,6 +41,7 @@ public class PlayerManager {
         //***************************************************************//
         public void setPoints(int newPoints) {
             points = newPoints;
+            guiPlayer.setBalance(points);
         }
 
         //***************************************************************//
@@ -54,9 +59,9 @@ public class PlayerManager {
         }
     }
 
-    public Player createPlayer(String name) {
-        Player player = new Player(name);
-        players.add(player);
+    public Player createPlayer(GUIManager gm) {
+        Player player = new Player(gm);
+        players.put(players.size(), player);
         return player;
     }
 }

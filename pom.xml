@@ -18,9 +18,25 @@
         </license>
     </licenses>
 
-    <packaging>jar</packaging>
+    <repositories>
+        <!-- DTU DiplomIT Matador GUI repository -->
+        <repository>
+            <id>Matador_GUI-repository</id>
+            <url>https://github.com/diplomit-dtu/Matador_GUI/raw/repository</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <dependencies>
+        <!-- DTU DiplomIT Matador GUI -->
+        <dependency>
+            <groupId>diplomitdtu</groupId>
+            <artifactId>matadorgui</artifactId>
+            <version>3.1.7</version>
+        </dependency>
         <!-- junit 5, unit test -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -29,6 +45,8 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <packaging>jar</packaging>
 
     <properties>
         <jdk.version>15</jdk.version>
