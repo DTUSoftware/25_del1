@@ -79,5 +79,4 @@
             <url>https://maven.pkg.github.com/DTUSoftware/25_del1</url>
         </repository>
     </distributionManagement>
-
 </project>
