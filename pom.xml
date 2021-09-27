@@ -72,4 +72,12 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub DTU-Software Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/DTUSoftware/25_del1</url>
+        </repository>
+    </distributionManagement>
+
 </project>
