@@ -93,19 +93,37 @@ public class DiceGame {
         player.addPoints(diceCup.getSum());
 
         System.out.println(player.getName() + " Got:" + Arrays.toString(new int[]{diceValues[0]}) + " and " + Arrays.toString(new int[]{diceValues[1]}) + " - Total: " + player.getPoints());
-        //***************************************************************//
-        // Sets the player points to 0 when both dice hit 1
-        //***************************************************************//
-        if (diceValues[0]==1 && diceValues[1]==1){
-            player.setPoints(0);
-        }
+
         //***************************************************************//
         // an if statement that checks if the player got the same number
         // on both dice, if that condidion is met, the player gets another try
         //***************************************************************//
+        int jackpointcounter = 0
         if (diceValues[0]==diceValues[1]) {
             gm.showMessage(player.getName() + " got the same on both dice and gets another turn");
             playerPlay(player);
+            //***************************************************************//
+            // Sets the player points to 0 when both dice hit 1
+            //***************************************************************//
+            if (diceValues[0]==1 && diceValues[1]==1){
+                player.setPoints(0);
+            }
+            else if (diceValues[0]==6 && diceValues[1]==6 && jackpointcounter == 0){
+                jackpointcounter++;
+            }
+            else if (diceValues[0]==6 && diceValues[1]==6 && jackpointcounter == 1){
+                gm.showMessage(player.getName() + " Got Jackpot, and won the game!!!");
+
+                if (gm.askPrompt("Vil I spille igen?")) {
+                    player1.setPoints(0);
+                    player2.setPoints(0);
+                }
+                else {
+                    isPlaying = false;
+                }
+            }
+            else if (diceValues[0]!=6 && diceValues[1]!=6 && jackpointcounter == 1){
+                jackpointcounter = 0;
         }
 
     }
