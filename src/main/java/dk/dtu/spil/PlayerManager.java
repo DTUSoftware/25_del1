@@ -1,7 +1,8 @@
 package dk.dtu.spil;
 
 import gui_fields.GUI_Player;
-import java.util.HashMap;
+
+import java.util.*;
 
 //***************************************************************//
 // Class that can set points to a player
@@ -19,6 +20,7 @@ public class PlayerManager {
         private int points = playerStartpoints;
         private final GUI_Player guiPlayer;
         private final String name;
+        private Deque<Integer> lastFourRolls = new ArrayDeque<>(4);
 
         //***************************************************************//
         // Constructor: Sets the name of the player
@@ -56,6 +58,21 @@ public class PlayerManager {
         //***************************************************************//
         public String getName() {
             return name;
+        }
+
+        public void addRoll(int faceValue1, int faceValue2) {
+            lastFourRolls.add(faceValue1);
+            lastFourRolls.add(faceValue2);
+            // Make sure that the dequeue is only 4 long
+            if (lastFourRolls.size() > 4) {
+                while (lastFourRolls.size() > 4) {
+                    lastFourRolls.remove();
+                }
+            }
+        }
+
+        public List<Integer> getLastFourRolls() {
+            return new ArrayList<>(lastFourRolls);
         }
     }
 
