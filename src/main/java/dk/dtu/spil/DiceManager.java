@@ -14,7 +14,7 @@ public class DiceManager {
         public void raffle() {
             // Random.nextInt() is faster and more efficient than Math.random() (see https://stackoverflow.com/a/738651/12418245)
             // value = (int) ((Math.random() * (maxDieValue-minDieValue+1)) + minDieValue);
-            faceValue = rand.nextInt(maxDieValue) + minDieValue;
+            faceValue = 6/*rand.nextInt(maxDieValue) + minDieValue*/;
         }
 
         public int getValue() {

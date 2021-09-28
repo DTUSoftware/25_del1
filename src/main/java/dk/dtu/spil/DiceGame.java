@@ -98,7 +98,7 @@ public class DiceGame {
         // an if statement that checks if the player got the same number
         // on both dice, if that condidion is met, the player gets another try
         //***************************************************************//
-        int jackpointcounter = 0
+        int jackpointcounter = 0;
         if (diceValues[0]==diceValues[1]) {
             gm.showMessage(player.getName() + " got the same on both dice and gets another turn");
             playerPlay(player);
@@ -108,7 +108,8 @@ public class DiceGame {
             if (diceValues[0]==1 && diceValues[1]==1){
                 player.setPoints(0);
             }
-            else if (diceValues[0]==6 && diceValues[1]==6 && jackpointcounter == 0){
+
+            if (diceValues[0]==6 && diceValues[1]==6 && jackpointcounter == 0){
                 jackpointcounter++;
             }
             else if (diceValues[0]==6 && diceValues[1]==6 && jackpointcounter == 1){
@@ -122,9 +123,9 @@ public class DiceGame {
                     isPlaying = false;
                 }
             }
-            else if (diceValues[0]!=6 && diceValues[1]!=6 && jackpointcounter == 1){
+            else if (diceValues[0]!=6 && diceValues[1]!=6 && jackpointcounter == 1) {
                 jackpointcounter = 0;
+            }
         }
-
     }
 }
