@@ -31,7 +31,7 @@ public class TestDiceManager {
 
     @Test
     public void testRaffleProbability() {
-        HashMap<Integer, Integer> allDiceValues = new HashMap<>() {{
+        HashMap<Integer, Integer> allDiceValues = new HashMap<Integer, Integer>() {{
             put(1, 0);
             put(2, 0);
             put(3, 0);
