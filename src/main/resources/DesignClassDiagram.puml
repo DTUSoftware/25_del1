@@ -1,43 +1,110 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class DiceGame {
-    player1 : Player
-    player2 : Player
-    diceCup : DiceCup
+skinparam classAttributeIconSize 0
 
-    main()
+class DiceGame {
+    -dm : DiceManager
+    -pm : PlayerManager
+    -gm : GUIManager
+    -player1 : Player
+    -player2 : Player
+    -diceCup : DiceCup
+    -isPlaying : boolean
+    -debug : boolean
+
+    +main() : void
+    -play() : void
+    -playerPlay(player:Player) : void
 }
 
-class Die {
-    faceValue : int
+class GUIManager {
+    -gui : GUI
 
-    raffle()
-    getValue() : int
+    +GUIManager()
+    +closeGUI() : void
+    +updateDice(faceValue1:int, faceValue2:int) : void
+    +showMessage(message:String) : void
+    +askPrompt(question:String) : boolean
+    +waitUserRoll(playerName:String) : void
+    +createGUIPlayer(startingBalance:int) : GUI_Player
+}
+
+package diplomitdtu.matadorgui {}
+
+'package diplomitdtu.matadorgui.gui_main {
+'    class GUI {
+''        +GUI(fields:GUI_Field[], backGroundColor:Color)
+''        +close() : void
+''        +setDice(faceValue1:int, faceValue2:int) : void
+''        +showMessage(msg:String) : void
+''        +getUserLeftButtonPressed(msg:String, trueButton:String, falseButton:String) : boolean
+''        +getUserString(msg:String) : String
+''        +addPlayer(player:GUI_Player) : void
+'    }
+'}
+
+
+
+'package diplomitdtu.matadorgui.gui_fields {
+'    class GUI_Player {
+''        +GUI_Player(name:String, balance:int, car:GUI_Car)
+''        +getName() : String
+''        +setBalance(balance:int) : void
+'    }
+'}
+
+class DiceManager {
+    -minDieValue : int
+    -maxDieValue : int
+    -rand : Random
+
+    +createDiceCup() : DiceCup
 }
 
 class DiceCup {
-    die1 : Die
-    die2 : Die
+    -die1 : Die
+    -die2 : Die
 
-    raffleCup()
-    getDiceValues() : int[]
-    getSum() : int
-    isSimilar() : boolean
+    +DiceCup()
+    +raffleCup() : void
+    +getDiceValues() : int[]
+    +getSum() : int
+    +isSimilar() : boolean
+}
+
+class Die {
+    -faceValue : int
+
+    +raffle() : void
+    +getValue() : int
+}
+
+class PlayerManager {
+    -playerStartpoints : int
+    -players : HashMap<Integer, Player>
+
+    +createPlayer(gm:GUIManager) : Player
 }
 
 class Player {
-    name : String
-    points : int
+    -name : String
+    -points : int
+    -guiPlayer : GUI_Player
 
-    addPoints()
-    setPoints()
-    getPoints() : int
-    getName() : String
+    +Player(gm:GUIManager)
+    +addPoints(p:int) : void
+    +setPoints(newPoints:int) : void
+    +getPoints() : int
+    +getName() : String
 }
 
-DiceGame --> "2" Player
-DiceGame --> "1" DiceCup
+DiceGame --> "1" PlayerManager
+DiceGame --> "1" DiceManager
+DiceGame --> "1" GUIManager
+DiceManager --> "*" DiceCup
 DiceCup --> "2" Die
+PlayerManager --> "*" Player
+GUIManager ..> diplomitdtu.matadorgui : <<use>>
 
 @enduml
