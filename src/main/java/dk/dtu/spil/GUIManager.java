@@ -36,34 +36,17 @@ public class GUIManager {
         return gui.getUserLeftButtonPressed(question, "Ja", "Nej");
     }
 
-    public void waitUserRoll(String playerName) {
-        gui.showMessage(playerName + "'s tur. Klik for at rulle terningerne!");
-//        gui.getUserButtonPressed(
-//                "Klik for at rulle terningerne",
-//                "Rul terningerne", "Rul terningerne"
-//        );
+    public void waitUserRoll(PlayerManager.Player player) {
+        if (player.getPoints() < 40) {
+            gui.showMessage(player.getName() + "'s turn. Click to roll the dice!");
+        }
+        else {
+            gui.showMessage(player.getName() + "'s turn. You need to roll two identical dice to win the game! Click to roll the dice!");
+        }
     }
 
-//    private GUI_Field[] initializeFields() {
-//        GUI_Field[] _fields = new GUI_Field[40];
-//
-//        _fields[0] = new GUI_Street();
-//
-//        GUI_Street testStreet= new GUI_Street();
-//        testStreet.setTitle("Anker Engelundsvej");
-//        testStreet.setBorder(Color.CYAN); //Useful to show owner
-//        testStreet.setRent("600,-");
-//        _fields[1] = testStreet;
-//
-//        for (int i = 2; i < _fields.length; i++) {
-//            _fields[i] = new GUI_Street();
-//        }
-//
-//        return _fields;
-//    }
-
     public GUI_Player createGUIPlayer(int startingBalance) {
-        String player_name = gui.getUserString("Indtast navn på spiller");
+        String player_name = gui.getUserString("Enter name for player");
 
         GUI_Car car = new GUI_Car();
         // The car color is random anyway, lol
