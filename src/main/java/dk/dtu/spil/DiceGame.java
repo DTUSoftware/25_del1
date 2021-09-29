@@ -2,7 +2,6 @@ package dk.dtu.spil;
 
 import java.util.Arrays;
 import java.util.List;
-
 import dk.dtu.spil.DiceManager.DiceCup;
 import dk.dtu.spil.PlayerManager.Player;
 
