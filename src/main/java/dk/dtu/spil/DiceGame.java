@@ -43,40 +43,16 @@ public class DiceGame {
 
     private static void play() {
         //***************************************************************//
-        // Loops the raffling as long as no one has reached 40 points
+        // Loops the raffling as long as no one won
         //***************************************************************//
-        while (player1.getPoints() <= 39 && player2.getPoints() <= 39) {
-            if (player2.getPoints() <= 39) {
-                // If the player won the game (by getting two 6's, two times)
-                if (playerPlay(player1)) { break; }
-            }
-            if (player1.getPoints() <= 39) {
-                // If the player won the game (by getting two 6's, two times)
-                if (playerPlay(player2)) { break; }
-            }
-        }
-
-        //***************************************************************//
-        // Writes which player won, by checking if one of the players are
-        // over 40 points, if so, it writes which player it was
-        //***************************************************************//
-        String message;
-        if (player1.getPoints() >= 40 || player2.getPoints() >= 40) {
-            if (player1.getPoints() >= 40) {
-                message = player1.getName() + " has won the game!";
-                System.out.println(message);
-                gm.showMessage(message);
-            }
-            if (player2.getPoints() >= 40) {
-                message = player2.getName() + " has won the game!";
-                System.out.println(message);
-                gm.showMessage(message);
-            }
+        while (true) {
+            if (playerPlay(player1)) { break; }
+            if (playerPlay(player2)) { break; }
         }
 
         // Ask if they want to continue playing - reset points and let the loop continue
         // Otherwise set isPlaying to false and the main loop will exit
-        if (gm.askPrompt("Vil I spille igen?")) {
+        if (gm.askPrompt("Do you want to play again?")) {
             player1.setPoints(0);
             player2.setPoints(0);
         }
@@ -87,7 +63,7 @@ public class DiceGame {
 
     private static boolean playerPlay(Player player) {
         if (!debug) {
-            gm.waitUserRoll(player.getName());
+            gm.waitUserRoll(player);
         }
 
         diceCup.raffleCup();
@@ -108,6 +84,15 @@ public class DiceGame {
         // on both dice, if that condition is met, the player gets another try
         //***************************************************************//
         if (diceCup.isSimilar()) {
+            // If the player had 40 points or more, return true and win
+            if ((player.getPoints() - diceCup.getSum()) >= 40) {
+                System.out.println(player.getName() + " got two equal after 40 and won, return true");
+                String message = player.getName() + " has won the game!";
+                System.out.println(message);
+                gm.showMessage(message);
+                return true;
+            }
+
             //***************************************************************//
             // Sets the player points to 0 when both dice hit 1
             //***************************************************************//
